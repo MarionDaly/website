@@ -1,51 +1,52 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-
+import styled from "styled-components"
+import GlobalStyle from "./global-styles"
 import Header from "./header"
-import "./layout.css"
+import Footer from "./footer"
+import Container from "./container"
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
-  return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
-  )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+const Layout = ({ children }) => (
+  <>
+    <GlobalStyle />
+    <LayoutWrapper>
+      <SkipLink href="#main">Skip to content</SkipLink>
+      <Header />
+      <main id="main">
+        <Container>{children}</Container>
+      </main>
+      <Footer />
+    </LayoutWrapper>
+  </>
+)
 
 export default Layout
+
+const LayoutWrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  & main {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  & footer {
+    margin-top: auto;
+  }
+`
+
+const SkipLink = styled.a`
+  position: absolute;
+  left: var(--size-400);
+  top: -100px;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  color: var(--selection-text);
+  background-color: var(--selection-bg);
+
+  &:focus {
+    top: var(--size-400);
+  }
+`

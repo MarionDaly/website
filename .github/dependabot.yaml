@@ -1,65 +1,23 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
-# borrowed from https://github.com/dependabot/dependabot-core/blob/main/.github/dependabot.yml
+# Dependabot opens pull requests to keep dependencies up to date.
+# See: https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
 updates:
-  - package-ecosystem: "bundler"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    groups:
-      dev-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "minor"
-          - "patch"
-  - package-ecosystem: "composer"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    groups:
-      dev-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "minor"
-          - "patch"
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "gomod"
-    directory: "/"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "mix"
-    directory: "/"
-    schedule:
-      interval: "daily"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "monthly"
+    open-pull-requests-limit: 5
     groups:
-      dev-dependencies:
-        dependency-type: "development"
+      npm-minor-and-patch:
         update-types:
           - "minor"
           - "patch"
     ignore:
-      - dependency-name: "npm"
+      # Major upgrades (e.g. React 19, styled-components 7) need manual testing.
+      - dependency-name: "*"
         update-types: ["version-update:semver-major"]
-  - package-ecosystem: "pip"
+  - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/"
-    schedule:
-      interval: "daily"
+      interval: "monthly"

@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "gatsby-serve",
+      "runtimeExecutable": "/bin/zsh",
+      "runtimeArgs": [
+        "-c",
+        "export PATH=/opt/homebrew/opt/node@22/bin:$PATH && PORT=8080 npm run serve"
+      ],
+      "port": 8080
+    },
+    {
+      "name": "gatsby-develop",
+      "runtimeExecutable": "/bin/zsh",
+      "runtimeArgs": [
+        "-c",
+        "export PATH=/opt/homebrew/opt/node@22/bin:$PATH && npm run develop"
+      ],
+      "port": 8000
+    }
+  ]
+}

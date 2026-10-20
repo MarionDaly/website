@@ -1,8 +1,14 @@
-name: sample-gatsby
+# NOT the live app spec. The live configuration (including the
+# www.makenomistakesai.com domain) is managed in the DigitalOcean dashboard:
+# Apps -> your app -> Settings -> App Spec. DigitalOcean does not read this file
+# when you push. It is only used by local tools such as `doctl apps dev build`.
+# Never run `doctl apps update --spec .do/app.yaml`; it would drop dashboard settings.
+name: makenomistakesai-website
 static_sites:
-- environment_slug: gatsby
-  github:
-    branch: main
-    deploy_on_push: true
-    repo: digitalocean/sample-gatsby
-  name: sample-gatsby
+  - name: website
+    environment_slug: gatsby
+    github:
+      repo: MarionDaly/website
+      branch: main
+      deploy_on_push: true
+    output_dir: public
